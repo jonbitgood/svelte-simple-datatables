@@ -9,5 +9,5 @@ export {
     PaginationButtons,
     PaginationRowCount,
     SearchInput,
-    ColumnFilterInputs,
+    ColumnFilterInputs
 }

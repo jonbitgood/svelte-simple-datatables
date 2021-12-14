@@ -1,6 +1,4 @@
 <script>
-	//import { options } from './stores/options.js'
-	//import { pageNumber, rowCount, datatableWidth } from './stores/state.js'
 	import { key } from './key.js'
 	import { getContext } from 'svelte'
 

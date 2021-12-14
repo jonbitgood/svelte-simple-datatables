@@ -10,7 +10,6 @@ const getOptions = () => {
             rowsPerPage: 50,
             columnFilter: false,
             scrollY: true,
-            css: true,
             labels: {
                 search: 'Search...',
                 filter: 'Filter',
@@ -40,7 +39,7 @@ const getOptions = () => {
                     noRows:   typeof opt.labels.noRows   === 'string' ? opt.labels.noRows   : 'No entries to found',
                     info:     typeof opt.labels.info     === 'string' ? opt.labels.info     : 'Showing {start} to {end} of {rows} entries',
                     previous: typeof opt.labels.previous === 'string' ? opt.labels.previous : 'Previous',
-                    next:     typeof opt.labels.next     === 'string' ? opt.labels.next     : 'Next',                
+                    next:     typeof opt.labels.next     === 'string' ? opt.labels.next     : 'Next',
                 }   
                 opt.blocks = opt.blocks ? opt.blocks : {}
                 const blocks = {

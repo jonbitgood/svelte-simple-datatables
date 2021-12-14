@@ -1,7 +1,4 @@
 <script>
-	//import { options } from './stores/options.js'
-	//import { rowCount, pageNumber, datatableWidth } from './stores/state.js'
-	//import { columns } from './stores/columns.js'
 	import { key } from './key.js'
 	import { getContext } from 'svelte'
 
@@ -27,11 +24,7 @@
 </script>
 
 {#if $datatableWidth > 600}
-	<section
-		class="dt-pagination-buttons {classList}"
-		{ref}
-		class:css={$options.css}
-	>
+	<section class="dt-pagination-buttons {classList}" {ref}>
 		<button
 			class="text"
 			class:disabled={$pageNumber === 1}
@@ -100,62 +93,3 @@
 		>
 	</section>
 {/if}
-
-<style>
-	section {
-		display: flex;
-		flex-direction: row;
-	}
-	.css {
-		height: 32px;
-		margin-right: 16px;
-	}
-	.css button {
-		background: inherit;
-		height: 32px;
-		width: 32px;
-		color: #616161;
-		font-size: 13px;
-		margin: 0;
-		padding: 0;
-		transition: all, 0.2s;
-		line-height: 32px;
-		border: 1px solid #e0e0e0;
-		border-right: none;
-		outline: none;
-	}
-	.css button:first-child {
-		border-radius: 4px 0 0 4px;
-	}
-	.css button:last-child {
-		border-right: 1px solid #e0e0e0;
-		border-radius: 0 4px 4px 0;
-	}
-	.css button:not(.active):hover {
-		background: #eee;
-		cursor: pointer;
-	}
-	.css button.text {
-		width: auto;
-		min-width: 70px;
-		cursor: pointer;
-	}
-	.css button.ellipse:hover {
-		background: inherit;
-		cursor: default;
-	}
-	.css button.active {
-		background: #eee;
-		font-weight: bold;
-	}
-	.css button.disabled:hover {
-		background: inherit;
-		cursor: default;
-	}
-	.css.mobile button.disabled {
-		color: #bdbdbd;
-	}
-	.css.mobile button {
-		font-weight: bold;
-	}
-</style>

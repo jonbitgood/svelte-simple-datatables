@@ -7,7 +7,7 @@ const createLocalFilters = () => {
 	return {
 		subscribe, update,
 		add: (key, value) => update(store => {
-			const filter = {key: key, value: value} 
+			const filter = {key: key, value: value}
 			store = store.filter(item => { return item.key !== key && item.value.length > 0 })
 			store.push(filter)
 			return store
@@ -15,7 +15,6 @@ const createLocalFilters = () => {
 		remove: () => update(store => store = [])
 	}
 }
-//export const localFilters = createLocalFilters()
 
 const createGlobalFilters = () => {
 	const { subscribe, update } = writable(null)
@@ -28,7 +27,6 @@ const createGlobalFilters = () => {
 		remove: () => update(store => store = null)
 	}
 }
-//export const globalFilters = createGlobalFilters()
 
 function getFilters() {
 	const localFilters = createLocalFilters();

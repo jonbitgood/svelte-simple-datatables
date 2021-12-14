@@ -3,11 +3,12 @@
 	import { getContext } from 'svelte'
 	const { options, columns } = getContext(key)
     
+    export let selectedColumn
 </script>
 
 
 {#each $columns as column}
-    {#if column.key}
+    {#if column.key == selectedColumn}
         <th class="filter" class:css={$options.css}>
             <input
                 type="text"

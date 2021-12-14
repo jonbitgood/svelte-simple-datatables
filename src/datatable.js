@@ -64,7 +64,7 @@ export function getDataTable() {
         },
         getTableContainerHeight: (height) => {
             let paginationBlock
-            if (options.get().pagination && (options.get().blocks.paginationButtons || options.get().blocks.paginationRowCount)) {
+            if (options.get().pagination && (options.get().blocks.paginationRowCount)) {
                 paginationBlock = true
             }
             const calc = [
