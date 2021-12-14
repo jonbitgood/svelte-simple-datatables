@@ -20,24 +20,16 @@ const getColumns = () => {
 				if (options.get().sortable !== true || typeof key === 'undefined') {
 					return
 				}
-				if (
-					element.classList.contains('sortable') &&
-					element.classList.contains('asc')
-				) {
-					Array.from(element.parentNode.children).forEach((item) =>
-						item.classList.remove('asc', 'desc')
-					)
-					element.classList.add('desc')
-					data.sortDesc(key)
-					pageNumber.set(1, context)
-				} else {
-					Array.from(element.parentNode.children).forEach((item) =>
-						item.classList.remove('desc', 'asc')
-					)
-					element.classList.add('asc')
-					data.sortAsc(key)
-					pageNumber.set(1, context)
-				}
+				// Grok Direction
+				let sortDir = (element.classList.contains('asc')) ? 'desc' : 'asc'
+
+				// Remove sibling classes, add new direction class
+				Array.from(element.parentNode.children).forEach((item) => item.classList.remove('asc', 'desc'))
+				element.classList.add(sortDir)
+				
+				// Sort
+				data.sort(key, sortDir)
+				pageNumber.set(1, context)
 				columns.redraw(context)
 			},
 			filter: (key, value, context) => {

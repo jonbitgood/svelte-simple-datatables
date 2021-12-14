@@ -10,38 +10,19 @@ const createData = () => {
 	const { subscribe, set, update } = writable([])
 	return {
 		subscribe, set,
-		sortAsc: (key) => update(store => {
+		sort: (key, direction) => update(store => {
 			try {
-				store.sort( (a, b) => {
+				store.sort((a, b) => {
 					if (typeof(key(b)) === "boolean") {
-						return key(a) ? 1 : -1
+						return key(a) ? ((direction == 'asc') ? 1 : -1) : ((direction == 'desc') ? 1 : -1)
 					} else {
-						return key(b).localeCompare(key(a)) 
-					}									
+						return (direction == 'asc') ? key(b).localeCompare(key(a)) : key(a).localeCompare(key(b))
+					}
 				})
-
 				return store
 			} catch (e) {
 				return store.sort( (a, b) => parseFloat(key(b)) - parseFloat(key(a)))
 			}
-			//return store.sort( (a, b) => key(b).localeCompare(key(a)) )
-			
-		}),
-		sortDesc: (key) => update(store => {
-			try {
-				store.sort( (a, b) => {
-					if (typeof(key(b)) === "boolean") {
-						return key(a) ? -1 : 1
-					} else {
-						return key(a).localeCompare(key(b)) 
-					}									
-				})
-
-				return store					
-			} catch (e) {
-				return store.sort( (a, b) => parseFloat(key(a)) - parseFloat(key(b)))
-			}
-			//return store.sort( (a, b) => key(a).localeCompare(key(b)) )
 		}),
 	}
 }
