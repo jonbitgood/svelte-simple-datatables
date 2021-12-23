@@ -10,7 +10,7 @@
 	const search = (value) => {
 		pageNumber.set(1)
 		globalFilters.set(value)
-		columns.redraw()
+		columns.draw()
 	}
 </script>
 

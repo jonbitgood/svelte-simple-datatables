@@ -9,20 +9,23 @@
 		Array(Math.ceil($rowCount / $options.rowsPerPage)).keys()
 	)
 	const slice = (arr, page) => {
-		if (page < 5) {
-			return arr.slice(0, 5)
-		} else if (page > arr.length - 4) {
-			return arr.slice(arr.length - 5, arr.length)
-		}
+		if(arr) {
+			if (page < 5) {
+				return arr.slice(0, 5)
+			} else if (page > arr.length - 4) {
+				return arr.slice(arr.length - 5, arr.length)
+			}
 		return arr.slice(page - 2, page + 1)
+		}
 	}
 	$: buttons = slice(pageCount, $pageNumber)
 	const setPage = (number) => {
 		pageNumber.set(number)
-		columns.redraw()
+		columns.draw()
 	}
 </script>
 
+{#if pageCount}
 {#if $datatableWidth > 600}
 	<section class="dt-pagination-buttons {classList}" {ref}>
 		<button
@@ -92,4 +95,5 @@
 			on:click={() => setPage(pageCount.length)}>&#10093;&#10093;</button
 		>
 	</section>
+{/if}
 {/if}

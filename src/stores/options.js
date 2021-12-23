@@ -22,7 +22,8 @@ const getOptions = () => {
                 searchInput: true, 
                 paginationButtons: true,
                 paginationRowCount: true,
-            }
+            },
+            filters: {}
         })
         return {
             subscribe, set, 
@@ -40,7 +41,10 @@ const getOptions = () => {
                     info:     typeof opt.labels.info     === 'string' ? opt.labels.info     : 'Showing {start} to {end} of {rows} entries',
                     previous: typeof opt.labels.previous === 'string' ? opt.labels.previous : 'Previous',
                     next:     typeof opt.labels.next     === 'string' ? opt.labels.next     : 'Next',
-                }   
+                }
+
+                opt.filters = opt.filters ? opt.filters : {}
+
                 opt.blocks = opt.blocks ? opt.blocks : {}
                 const blocks = {
                     searchInput:        typeof opt.blocks.searchInput        === 'boolean' ? opt.blocks.searchInput        : true, 
@@ -55,7 +59,8 @@ const getOptions = () => {
                     scrollY:      typeof opt.scrollY        === 'boolean' ? opt.scrollY       : true, 
                     css:          typeof opt.css            === 'boolean' ? opt.css           : true, 
                     labels: labels,
-                    blocks: blocks
+                    blocks: blocks,
+                    filters: opt.filters
                 }
                 options.set(parsed)
             }

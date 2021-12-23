@@ -12,7 +12,7 @@
 		.replace('{rows}', `<b>${rows}</b>`)
 </script>
 
-<aside class="dt-pagination-rowcount" class:css={$options.css}>
+<aside>
 	{#if $datatableWidth > 600}
 		{#if rows > 0}
 			{@html info}
@@ -23,12 +23,3 @@
 		{@html `<b>${start}</b>-<b>${end}</b>/<b>${rows}</b>`}
 	{/if}
 </aside>
-
-<style>
-	.css {
-		color: #616161;
-		line-height: 32px;
-		margin-left: 16px;
-		font-size: 14px;
-	}
-</style>

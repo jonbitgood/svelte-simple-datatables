@@ -4,7 +4,7 @@ import { key } from '../key.js';
 
 
 const getColumns = () => {
-	const {id ,options, data, pageNumber, localFilters} = getContext(key);
+	const {id, options, data, pageNumber, localFilters} = getContext(key);
 
 	const createColumns = () => {
 		
@@ -30,12 +30,12 @@ const getColumns = () => {
 				// Sort
 				data.sort(key, sortDir)
 				pageNumber.set(1, context)
-				columns.redraw(context)
+				columns.draw(context)
 			},
 			filter: (key, value, context) => {
 				pageNumber.set(1, context)
 				localFilters.add(key, value)
-				columns.redraw(context)
+				columns.draw(context)
 			},
 			draw: () => {
 				setTimeout(() => {
@@ -43,10 +43,6 @@ const getColumns = () => {
 					if (tbody === null) return
 					const thead = document.querySelectorAll(`#${id.get()} .dt-header thead tr`)
 					const $columns = columns.get()
-
-					const th = thead[0].children[0]
-					const td = Array.from(tbody.children)[0]
-
 					thead.forEach(tr => {
 						let i = 0
 						Array.from(tbody.children).forEach(td => {
@@ -66,37 +62,8 @@ const getColumns = () => {
 							i++
 						})
 					})
-				}, 50)	
-			},
-			redraw: () => {
-				if ( options.get().scrollY === false ) return
-				
-				setTimeout(() => {
-					const tbody = document.querySelector(`#${id.get()} table tbody tr`)
-					if (tbody === null) return
-					const thead = document.querySelectorAll(`#${id.get()} .dt-header thead tr`)
-					const $columns = columns.get()
-					thead.forEach(tr => {
-						let i = 0
-						Array.from(tbody.children).forEach(td => {
-							let th = tr.children[i]
-							let thW = th.getBoundingClientRect().width
-							let tdW = td.getBoundingClientRect().width
-							if (tdW > thW) { 
-								th.style.minWidth = tdW + 'px'
-								th.style.maxWidth = tdW + 'px'
-								$columns[i].minWidth = tdW
-							}
-							else {
-								td.style.minWidth = thW + 'px'
-								td.style.maxWidth = thW + 'px'
-								$columns[i].minWidth = thW
-							} 
-							i++
-						})
-					})
-				}, 50)			
-			},
+				}, 50)
+			}
 		}
 	}	
 

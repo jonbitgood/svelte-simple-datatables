@@ -55,7 +55,7 @@ export function getDataTable() {
             const tableContainer = document.querySelector(`#${id.get()} .dt-table`)
             if ( options.get().scrollY ) {
                 tableContainer.style.height = datatable.getTableContainerHeight(size.parentHeight * size.height) + 'px'
-                columns.redraw()
+                columns.draw()
             }
             datatableWidth.set( size.parentWidth * size.width )
             if (size.parentWidth * size.width < document.querySelector(`#${id.get()} table`).offsetWidth) {
@@ -88,6 +88,7 @@ export function getDataTable() {
                 document.querySelectorAll(`#${id.get()} table thead th`).forEach(th => {
                     columnList.push({
                         index: i,
+                        name: th.dataset.name,
                         html: th.innerHTML,
                         key: datatable.getKey(th.dataset.key),
                         sort: null,
