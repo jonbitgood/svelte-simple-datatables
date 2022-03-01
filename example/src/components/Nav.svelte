@@ -27,7 +27,6 @@
             <li class:active={$location === `/demo/pagination`} 	><a href="#/demo/pagination">pagination</a></li>
             <li class:active={$location === `/demo/column-filter`} 	><a href="#/demo/column-filter">column filter</a></li>
             <li class:active={$location === `/demo/i18n`} 			><a href="#/demo/i18n">i18n</a></li>
-            <li class:active={$location === `/demo/blocks`} 		><a href="#/demo/blocks">blocks</a></li>
             <li class:active={$location === `/demo/expression`} 	><a href="#/demo/expression">js expression</a></li>
             <li class:active={$location === `/demo/scroll-y`} 		><a href="#/demo/scroll-y">scroll y</a></li>
             <li class:active={$location === `/demo/scroll-x`} 		><a href="#/demo/scroll-x">scroll x</a></li>

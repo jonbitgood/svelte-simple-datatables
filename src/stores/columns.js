@@ -32,9 +32,9 @@ const getColumns = () => {
 				pageNumber.set(1, context)
 				columns.draw(context)
 			},
-			filter: (key, value, context) => {
+			filter: (key, value, operation, context) => {
 				pageNumber.set(1, context)
-				localFilters.add(key, value)
+				localFilters.add(key, value, operation)
 				columns.draw(context)
 			},
 			draw: () => {

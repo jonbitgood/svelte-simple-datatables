@@ -45,6 +45,18 @@ function getData(){
 			}
 			if ($localFilters.length > 0) {
 				$localFilters.forEach(filter => {
+
+					console.log(filter)
+					
+					if(filter.operation == 'range') {
+						// Filter data for values between min and max
+						return $data = $data.filter( item => (filter.key(item) > filter.value[0] && filter.key(item) < filter.value[1]))
+					}
+
+					if(filter.operation == 'regex') {
+						return $data = $data.filter( item => (filter.key(item).match(filter.value)))
+					}
+
 					return $data = $data.filter( item => filter.key(item).toString().toLowerCase().indexOf(filter.value.toString().toLowerCase()) > -1)
 				})
 			}

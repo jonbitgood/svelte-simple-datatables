@@ -7,11 +7,7 @@
 	import Demo from '../components/Demo.svelte'
 	const settings = {
 		rowsPerPage: 50,
-		columnFilter: true,
-        blocks: {
-            searchInput: true, 
-        }
-
+		columnFilter: true
 	}
 	let rows
 </script>

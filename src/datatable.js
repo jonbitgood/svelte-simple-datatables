@@ -63,13 +63,9 @@ export function getDataTable() {
             }
         },
         getTableContainerHeight: (height) => {
-            let paginationBlock
-            if (options.get().pagination && (options.get().blocks.paginationRowCount)) {
-                paginationBlock = true
-            }
             const calc = [
-                (options.get().blocks.searchInput) ? document.querySelector(`#${id.get()} .dt-search`).getBoundingClientRect().height : 0,
-                (paginationBlock) ? document.querySelector(`#${id.get()} .dt-pagination`).getBoundingClientRect().height : 0
+                document.querySelector(`#${id.get()} .dt-search`).getBoundingClientRect().height,
+                document.querySelector(`#${id.get()} .dt-pagination`).getBoundingClientRect().height
             ]
             const sum = (a, b) => a + b
             document.querySelector(`#${id.get()} .dt-table`).style.height = height - calc.reduce(sum) + 'px'

@@ -108,25 +108,11 @@ const settings = {
 ````
 See demo [here](https://vincjo.fr/svelte-simple-datatables/#/demo/i18n) 
 
-# Optional blocks
-The Datatable includes 3 optional blocks
-- PaginationButtons
-- PaginationRowCount
-- SearchInput
-
 These can be disabled in the settings, imported as components and placed anywhere :
 ````svelte
 <script>
     import { data } from './data.example.js' 
     import { SearchInput, PaginationButtons, PaginationRowCount, Datatable } from 'svelte-simple-datatables'
-
-    const settings = {
-        blocks: {
-            searchInput: false, 
-            paginationButtons: false,
-            paginationRowCount: false,
-        }
-    }
     let rows
 </script>
 
@@ -139,8 +125,6 @@ These can be disabled in the settings, imported as components and placed anywher
 </Datatable>
 
 ````
-See demo [here](https://vincjo.fr/svelte-simple-datatables/#/demo/blocks) 
-
 # <a name="expression"></a> Use of expressions in `key` dataset
 ````svelte
 <script>

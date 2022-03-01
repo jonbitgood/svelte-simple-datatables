@@ -6,9 +6,9 @@ const createLocalFilters = () => {
 	const { subscribe, update } = writable([])
 	return {
 		subscribe, update,
-		add: (key, value) => update(store => {
-			const filter = {key: key, value: value}
-			store = store.filter(item => { return item.key !== key && item.value.length > 0 })
+		add: (key, value, operation) => update(store => {
+			const filter = {key: key, value: value, operation: operation}
+			store = store.filter(item => item.key !== key && item.value.length > 0)
 			store.push(filter)
 			return store
 		}),

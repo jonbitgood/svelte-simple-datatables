@@ -16,13 +16,8 @@
         info: 'Showing {start} to {end} of {rows} entries',
         previous: 'Previous',
         next: 'Next',       
-    },
-    blocks: {
-        searchInput: true, 
-        paginationButtons: true,
-        paginationRowCount: true,
     }
-}    
+}
 `
 
 </script>

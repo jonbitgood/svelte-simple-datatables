@@ -1,5 +1,5 @@
 <script>
-	import { key } from './key.js'
+	import { key } from '../../key.js'
 	import { getContext } from 'svelte'
 
 	const { options, rowCount, pageNumber, datatableWidth, columns } = getContext(key)
@@ -9,13 +9,13 @@
 		Array(Math.ceil($rowCount / $options.rowsPerPage)).keys()
 	)
 	const slice = (arr, page) => {
-		if(arr) {
+		if(arr !== undefined) {
 			if (page < 5) {
 				return arr.slice(0, 5)
 			} else if (page > arr.length - 4) {
 				return arr.slice(arr.length - 5, arr.length)
 			}
-		return arr.slice(page - 2, page + 1)
+			return arr.slice(page - 2, page + 1)
 		}
 	}
 	$: buttons = slice(pageCount, $pageNumber)
@@ -24,7 +24,6 @@
 		columns.draw()
 	}
 </script>
-
 {#if pageCount}
 {#if $datatableWidth > 600}
 	<section class="dt-pagination-buttons {classList}" {ref}>
