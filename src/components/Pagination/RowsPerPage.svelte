@@ -2,15 +2,19 @@
 	import { key } from '../../key.js'
 	import { getContext } from 'svelte'
 
-	const { options } = getContext(key)
-
+	const { options, pageNumber, rowCount } = getContext(key)
+	$: start = $pageNumber * $options.rowsPerPage - $options.rowsPerPage + 1
+	$: end = Math.min($pageNumber * $options.rowsPerPage, $rowCount)
+	$: rows = $rowCount
 </script>
 
-<select 
-	class="relative py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md cursor-default focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
-	bind:value={$options.rowsPerPage}>
-	<option value="9999999999">All</option>
-	<option value="25">25</option>
-	<option value="50">50</option>
-	<option value="100">100</option>
-</select>
+<label class="flex flex-row text-sm font-medium leading-5 text-gray-700">
+	<span class="relative inline-flex items-center bg-white px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 dark:bg-gray-600 dark:text-gray-300">{start}-{end}/{rows}</span>
+	<select 
+		class="relative inline-flex items-center border border-gray-300 bg-white pl-4 pr-6 py-2 text-sm text-gray-500 hover:bg-gray-50 dark:bg-gray-600 dark:text-gray-300 rounded-md" 
+		bind:value={$options.rowsPerPage}>
+		<option value="25">25</option>
+		<option value="50">50</option>
+		<option value="100">100</option>
+	</select>
+</label>

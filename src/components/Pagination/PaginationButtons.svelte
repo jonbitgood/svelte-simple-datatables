@@ -26,9 +26,8 @@
 </script>
 {#if pageCount}
 {#if $datatableWidth > 600}
-	<section class="dt-pagination-buttons {classList}" {ref}>
+	<section class="flex {classList}" {ref}>
 		<button
-			class="text"
 			class:disabled={$pageNumber === 1}
 			on:click={() => setPage($pageNumber - 1)}
 		>
@@ -75,10 +74,10 @@
 	</section>
 {:else}
 	<section
-		class="dt-pagination-buttons mobile {classList}"
+		class="flex mobile {classList}"
 		class:css={$options.css}
 	>
-		<button class:disabled={$pageNumber === 1} on:click={() => setPage(1)}
+		<button class="rounded-l-md" class:disabled={$pageNumber === 1} on:click={() => setPage(1)}
 			>&#10092;&#10092;</button
 		>
 		<button
@@ -90,9 +89,27 @@
 			on:click={() => setPage($pageNumber + 1)}>&#10095;</button
 		>
 		<button
+			class="rounded-r-md"
 			class:disabled={$pageNumber === pageCount.length}
-			on:click={() => setPage(pageCount.length)}>&#10093;&#10093;</button
-		>
+			on:click={() => setPage(pageCount.length)}>&#10093;&#10093;</button>
 	</section>
 {/if}
 {/if}
+
+<style>
+section button:first-child {
+	@apply rounded-l-md;
+}
+
+section button:last-child {
+	@apply rounded-r-md;
+}
+
+button {
+	@apply relative inline-flex items-center bg-white dark:bg-gray-600 border-gray-300 text-gray-500 dark:text-gray-300 hover:bg-gray-50 px-4 py-2 border text-sm
+}
+
+button.active {
+	@apply z-10 text-gray-900 dark:text-gray-100 font-bold;
+}
+</style>

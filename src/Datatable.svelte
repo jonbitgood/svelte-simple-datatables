@@ -51,15 +51,13 @@
 	onDestroy(() => datatable.reset())
 </script>
 
-
-
 <section
 	id={$id}
 	class="datatable {classList}"
 	class:scroll-y={$options.scrollY}
 >
 
-<div class="mt-4 flex rounded-md shadow-sm">
+<div class="mt-4 flex rounded-md">
 	<div class="relative w-1/2 mx-auto">
 	<div class="relative flex items-stretch grow focus-within:z-10">
 	  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-300 dark:text-gray-600">
@@ -67,42 +65,66 @@
 		  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
 		</svg>
 	  </div>
-	  <SearchInput classList="focus:ring-blue-500 focus:border-blue-500 block w-full rounded pl-10 sm:text-sm border-gray-300 text-gray-700 dark:bg-gray-300" />
-	  {#if options.get().filters.length > 0}
-	  <Menu>
-		  <div slot="trigger">
-			<button 
-			type="button" 
-			class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-				</svg>
-			</button>
-		  </div>
-		  <div slot="menu">
-			<ColumnFilterInputs />
-		  </div>
-	  </Menu>
-
-	  {/if}
+	  <SearchInput classList="focus:ring-secondary-500 focus:border-secondary-500 block w-full rounded pl-10 sm:text-sm border-gray-300 text-gray-700 dark:bg-gray-300" />
 	</div>
 	</div>
   </div>
 
-	<div class="dt-table">
-	<table>
-		<slot />
-	</table>
+  	<ColumnFilterInputs />
+  
+	<div class="dt-table flex flex-row">
+		<table class="relative w-full">
+			<slot />
+		</table>
 	</div>
 
 	<div class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-100 px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
 		<div class="flex-1 flex items-center justify-between text-sm">
 			<PaginationRowsPerPage />
-			<PaginationRowCount />
-			<nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+			<nav class="relative z-0 inline-flex rounded-md -space-x-px" aria-label="Pagination">
 			  <PaginationButtons />
 			</nav>
 		</div>
 	  </div>
 
 </section>
+
+<style>
+
+table tbody td {
+	@apply px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300;
+}
+
+table thead {
+	@apply bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-400 h-12;
+}
+
+table table thead th {
+	@apply relative px-6 py-3 text-left text-xs dark:bg-gray-900 text-gray-500 dark:text-gray-100 uppercase tracking-wider;
+}
+
+table .even {
+	@apply bg-gray-200 dark:bg-gray-600;
+}
+
+table thead th:before {
+	content: '▲';
+	position: absolute;
+	opacity: 0.5;
+	left: 7px;
+	top: 11px;
+}
+
+table thead th:after {
+	content: '▼';
+	position: absolute;
+	opacity: 0.5;
+	left: 7px;
+	top: 21px;
+}
+
+table thead th.desc:before,
+table thead th.asc:after {
+	opacity: 1;
+}
+</style>
