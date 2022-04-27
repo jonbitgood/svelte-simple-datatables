@@ -36,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/vincjo/svelte-simple-datatables/issues"
   },
-  "homepage": "https://vincjo.fr/svelte-simple-datatables"
+  "homepage": "https://vincjo.fr/svelte-simple-datatables",
+  "dependencies": {
+    "fuse.js": "^6.5.3"
+  }
 }

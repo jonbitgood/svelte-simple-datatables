@@ -103,7 +103,7 @@ table table thead th {
 	@apply relative px-6 py-3 text-left text-xs dark:bg-gray-900 text-gray-500 dark:text-gray-100 uppercase tracking-wider;
 }
 
-table .even {
+table tbody td:nth-child(even) {
 	@apply bg-gray-200 dark:bg-gray-600;
 }
 
